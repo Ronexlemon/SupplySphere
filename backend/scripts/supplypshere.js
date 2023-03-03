@@ -3,13 +3,13 @@ const {ethers} = require("hardhat");
 
 async function main(){
     //get the contract
-    const TenderFileCoinContract = await ethers.getContractFactory("Bider");
+    const TenderSupplyShereContract = await ethers.getContractFactory("Bider");
     //deploy the contract
-    const TenderFileCoinContractDeploy = await TenderFileCoinContract.deploy();
+    const TenderSupplyShereContractDeploy = await TenderSupplyShereContract.deploy();
     //await deployment
-    await TenderFileCoinContractDeploy.deployed();
+    await TenderSupplyShereContractDeploy.deployed();
     //console the address
-    console.log("TenderFileConContractAddress", TenderFileCoinContractDeploy.address);
+    console.log("SupplyShereContractAddress", TenderSupplyShereContractDeploy.address);
 }
 //call main
 main().then(()=>
