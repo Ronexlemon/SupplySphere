@@ -2,7 +2,7 @@ import React from "react";
 ;import { BiderAbi } from "../../abi/bidercontract_abi";
 import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
-import { providers, Contract } from "ethers";
+import { BrowserProvider, Contract } from "ethers";
 import DisplayBids from "./displayBids"
 
 
@@ -12,17 +12,17 @@ function Approve() {
   const [index, setIndex] = useState();
   const ContractBiderAddress = "0x21ba8e6B05c8020d985777Ab10457cE7C0626fa1"; 
   const Web3ModalRef = useRef();
-  //provide sugner or provider
+  //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
-    // check if network is Mumbai
+    const web3Provider = new BrowserProvider(provider);
+    // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 3141) {
-      window.alert("Change network to HyperSpace fileCoin");
-      throw new Error("Change network To HyperSpace fileCoin ");
+    
+    if (chainId !== 4002) {
+      window.alert("Change network to FantomTestnet");
+      throw new Error("Change network to FantomTestnet ");
     }
-
     if (needSigner) {
       const signer = web3Provider.getSigner();
       return signer;

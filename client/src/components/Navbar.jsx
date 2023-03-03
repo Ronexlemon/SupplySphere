@@ -1,12 +1,12 @@
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+// import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { useStateContext } from "../contexts/ContextProvider";
 import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
-import { providers, Contract } from "ethers";
+import { BrowserProvider, Contract } from "ethers";
 
 
 
@@ -44,7 +44,7 @@ const Navbar = () => {
   //provide sugner or provider
   const connectWallet = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
+    const web3Provider = new BrowserProvider(provider);
     
     // check if network is Mumbai
     const { chainId } = await web3Provider.getNetwork();

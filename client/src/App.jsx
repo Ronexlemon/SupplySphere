@@ -6,7 +6,8 @@ import TenderAllocation from "./pages/tenderallocation/TenderAllocation";
 import AvailableTenders from "./pages/tenderpost/AvailableTenders";
 import DisplayTenders from "./pages/tenderpost/DisplayAvailableTenders";
 import Tenders from "./pages/tenderpost/Tenders";
-import { Layout } from "./components/Layout";
+// import { Layout } from "./components";
+import Layout from "./components/Layout";
 import "./App.css";
 
 import Bidders from "./pages/bidders/MyBids";

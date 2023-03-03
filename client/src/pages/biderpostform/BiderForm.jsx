@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Web3 from "../../web3-storage/web3";
 import { Web3Storage, getFilesFromPath } from "web3.storage";
 
-import { providers, Contract } from "ethers";
+import { BrowserProvider, Contract } from "ethers";
 
 const BiderForm = () => {
   const token =
@@ -32,12 +32,13 @@ const BiderForm = () => {
   //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
-    // check if network is Mumbai
+    const web3Provider = new BrowserProvider(provider);
+    // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 3141) {
-      window.alert("Change network to HyperSpace fileCoin");
-      throw new Error("Change network To HyperSpace fileCoin ");
+    
+    if (chainId !== 4002) {
+      window.alert("Change network to FantomTestnet");
+      throw new Error("Change network to FantomTestnet ");
     }
     if (needSigner) {
       const signer = web3Provider.getSigner();
@@ -45,7 +46,6 @@ const BiderForm = () => {
     }
     return web3Provider;
   };
-
   //call the metamask on page reload
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({

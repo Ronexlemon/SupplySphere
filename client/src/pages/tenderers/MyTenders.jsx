@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Web3Modal from "web3modal";
-import { providers, Contract } from "ethers";
+
+import { BrowserProvider, Contract } from "ethers";
 import { BiderAbi } from "../../abi/bidercontract_abi";
 import DisplayMyTenders from "./DisplayMyTenders";
 
@@ -74,7 +75,7 @@ const AllMyTenders = () => {
   const getProviderOrSigner = async (needSigner = false) => {
     //connect metamask
     const provider = await web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
+    const web3Provider = new BrowserProvider(provider);
     //check if user is connected to Mumbai network
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 3141) {

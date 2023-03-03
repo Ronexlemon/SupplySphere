@@ -2,7 +2,7 @@ import React from "react";
 import { BiderAbi } from "../../abi/bidercontract_abi";
 import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
-import { providers, Contract } from "ethers";
+import { BrowserProvider, Contract } from "ethers";
 import DisplayTenderStatus from "./DisplayTenderStatus";
 
 
@@ -15,7 +15,7 @@ function TenderStatus() {
   //provide sugner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
+    const web3Provider = new BrowserProvider(provider);
     // check if network is Mumbai
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 3141) {
