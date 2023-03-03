@@ -9,8 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2-react-popups": "^20.4.52",
+    "ethers": "^6.0.8",
+    "ipfs-http-client": "^60.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.8.2",
+    "web3.storage": "^4.5.4",
+    "web3modal": "^1.9.12"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
