@@ -1,5 +1,5 @@
 const {ethers} = require("hardhat");
-
+//1. SupplyShereContractAddress 0x1F949e4688F0933B699899a04ad4f9E76112b560
 
 async function main(){
     //get the contract
