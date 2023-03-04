@@ -6,11 +6,13 @@ const DisplayMyTenders = (props) => {
 
    useEffect(() => {
      const filteredTenders = props.tenders.filter(
-       (tender) => tender.owner.toString() === props.userAccount.toString()
+       (tender) => tender.owner.toString().toLowerCase() == props.userAccount.toString().toLowerCase()
+       
      );
      setNotHaveTender(filteredTenders.length === 0);
      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
    }, [props.tenders, props.userAccount]);
+   
 
   return (
     <div className="">
@@ -33,7 +35,8 @@ const DisplayMyTenders = (props) => {
             <tbody className="text-[#130026]  text-sm font-light">
               {props.tenders.map((tender, index) => (
                 <>
-                  {tender.owner.toString() === props.userAccount.toString() && (
+               
+                  {tender.owner.toString().toLowerCase() == props.userAccount.toString().toLowerCase() && (
                     <tr
                       key={index}
                       className="border-b border-gray-200  hover:bg-gray-100"
@@ -82,7 +85,7 @@ const DisplayMyTenders = (props) => {
                         <div className="flex items-center">
                           <div className="mr-2"></div>
                           <span className="font-josefin font-normal">
-                            {tender.tenderAmount / 1}
+                            {Number(tender.tenderAmount)}
                           </span>
                         </div>
                       </td>

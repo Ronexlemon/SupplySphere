@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/images/TenderSpaceLogo.svg"
 import { MdOutlineCancel } from "react-icons/md";
-// import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { links } from "../data/links";
 import { useStateContext } from "../contexts/ContextProvider";

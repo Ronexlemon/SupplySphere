@@ -80,7 +80,7 @@ const DisplayTenders = (props) => {
                       <div className="flex items-center">
                         <div className="mr-2"></div>
                         <span className="font-josefin font-normal">
-                          {tender.tenderAmount / 1}
+                          {Number(tender.tenderAmount)}
                         </span>
                       </div>
                     </td>

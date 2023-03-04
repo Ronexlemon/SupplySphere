@@ -3,15 +3,20 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Web3Modal from "web3modal";
 
 import { BrowserProvider, Contract } from "ethers";
+
+import Web3 from "web3";
+
+
 import { BiderAbi } from "../../abi/bidercontract_abi";
 import DisplayMyTenders from "./DisplayMyTenders";
 
 const AllMyTenders = () => {
+   
   const [Tenders, setTenders] = useState([]);
-  const TenderOwnerAddress = "0x21ba8e6B05c8020d985777Ab10457cE7C0626fa1";
+  const TenderOwnerAddress = "0x1F949e4688F0933B699899a04ad4f9E76112b560";
   const [tenderslength, setLength] = useState(0);
   const [userAccount,setUserAccount] = useState(null);
-  const web3ModalRef = useRef();
+  const Web3ModalRef = useRef();
   const Approve = () => {
     alert("yooh");
   };
@@ -72,33 +77,36 @@ const AllMyTenders = () => {
 
   //   //add function to render tenders
   // }, []);
+  //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
-    //connect metamask
-    const provider = await web3ModalRef.current.connect();
+    const provider = await Web3ModalRef.current.connect();
     const web3Provider = new BrowserProvider(provider);
-    //check if user is connected to Mumbai network
-    const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 3141) {
-      window.alert("Change network to HyperSpace fileCoin");
-      throw new Error("Change network To HyperSpace fileCoin ");
-    }
-    const signer = web3Provider.getSigner();
-    const accounts = await signer.getAddress();
+    const web3 = new Web3(provider)
+    const accounts = web3.currentProvider.selectedAddress;
+   
     setUserAccount(accounts);
-    // alert("network is Mumbai")
-    //if need signer for transactions
+    console.log("account",accounts)
+    // check if network is fantomTestnet
+    const { chainId } = await web3Provider.getNetwork();
+     const signer = web3Provider.getSigner();
+     
+    // console.log("the balance is",await balance)
+     console.log("the signer is",await signer)
+   // const accounts = await signer.Address();
+    // setUserAccount(balance);
+    if (Number(chainId) !== 4002) {
+      window.alert("Change network to FantomTestnet");
+      throw new Error("Change network to FantomTestnet ");
+    }
     if (needSigner) {
       const signer = web3Provider.getSigner();
-      const accounts = await signer.getAddress();
-      setUserAccount(accounts);
-      // setaddress(accounts);
       return signer;
     }
     return web3Provider;
   };
   useEffect(() => {
-    web3ModalRef.current = new Web3Modal({
-      network: "hyperspace",
+    Web3ModalRef.current = new Web3Modal({
+      network: "fantomTestnet",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,

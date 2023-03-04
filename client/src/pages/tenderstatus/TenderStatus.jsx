@@ -10,17 +10,17 @@ function TenderStatus() {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x21ba8e6B05c8020d985777Ab10457cE7C0626fa1";
+  const ContractBiderAddress = "0x1F949e4688F0933B699899a04ad4f9E76112b560";
   const Web3ModalRef = useRef();
   //provide sugner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
     const web3Provider = new BrowserProvider(provider);
-    // check if network is Mumbai
+    // check if network is Fantom
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 3141) {
-      window.alert("Change network to HyperSpace fileCoin");
-      throw new Error("Change network To HyperSpace fileCoin ");
+    if (Number(chainId) !== 4002) {
+      window.alert("Change network to FantomTestnet");
+      throw new Error("Change network To FantomTestnet");
     }
 
     if (needSigner) {
@@ -68,7 +68,7 @@ function TenderStatus() {
   // },[])
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "hyperspace",
+      network: "fantomTestnet",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,

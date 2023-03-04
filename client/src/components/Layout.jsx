@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
 import { useStateContext } from "../contexts/ContextProvider";
-// import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 const Layout = ({ children }) => {
   const { activeMenu } = useStateContext();

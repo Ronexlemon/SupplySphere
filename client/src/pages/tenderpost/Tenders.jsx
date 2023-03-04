@@ -15,7 +15,7 @@ const Tenders = () => {
   let btnapprove = useRef(null);
   //let Tenders =[];
   const [Tenders, setTenders] = useState([]);
-  const TenderOwnerAddress = "0x21ba8e6B05c8020d985777Ab10457cE7C0626fa1";
+  const TenderOwnerAddress = "0x1F949e4688F0933B699899a04ad4f9E76112b560";
   const [tenderslength, setLength] = useState(0);
   const web3ModalRef = useRef();
   const [walletconnect, setWalletConnect] = useState(false);
@@ -55,18 +55,18 @@ const Tenders = () => {
     //connect metamask
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new BrowserProvider(provider);
-    //check if user is connected to Mumbai network
+    //check if user is connected to Fantom network
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 3141) {
-      window.alert("Change network to HyperSpace fileCoin");
-      throw new Error("Change network To HyperSpace fileCoin ");
+    if (Number(chainId) !== 4002) {
+      window.alert("Change network to FantomTestnet");
+      throw new Error("Change network To FantomTestnet ");
     }
-    // alert("network is Mumbai")
+    // alert("network is fantom")
     //if need signer for transactions
     if (needSigner) {
       const signer = web3Provider.getSigner();
-      const accounts = await signer.getAddress();
-      setaddress(accounts);
+    //   const accounts = await signer.getAddress();
+    //   setaddress(accounts);
       return signer;
     }
     return web3Provider;
@@ -140,7 +140,7 @@ const Tenders = () => {
   //load content on reload
   useEffect(() => {
     web3ModalRef.current = new Web3Modal({
-      network: "hyperspace",
+      network: "fantomTestnet",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,

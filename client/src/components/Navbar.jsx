@@ -1,12 +1,14 @@
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
-// import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { useStateContext } from "../contexts/ContextProvider";
 import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
-import { BrowserProvider, Contract } from "ethers";
+import {  ethers,Contract } from "ethers";
+import Web3 from "web3";
+
 
 
 
@@ -39,20 +41,22 @@ const Navbar = () => {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x0dDCC4ccA81cF91953a6dcbf8da45C125d39A6bE"; 
+  const ContractBiderAddress = "0x1F949e4688F0933B699899a04ad4f9E76112b560"; 
   const Web3ModalRef = useRef();
   //provide sugner or provider
   const connectWallet = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new BrowserProvider(provider);
-    
-    // check if network is Mumbai
+    const web3Provider = new ethers.BrowserProvider(provider);
+    // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 3141) {
-      window.alert("Change network to HyperSpace fileCoin");
-      throw new Error("Change network To HyperSpace fileCoin ");
+    // const signer = web3Provider.getSigner();
+    // const accounts = await signer.getAddress();
+    // setUserAccount(accounts);
+    console.log("chain o=id", Number(chainId) == 4002)
+    if (Number(chainId) !== 4002) {
+      window.alert("Change network to FantomTestnet");
+      throw new Error("Change network to FantomTestnet ");
     }
-    setWalletConnect(true);
     if (needSigner) {
       const signer = web3Provider.getSigner();
       return signer;
@@ -61,7 +65,7 @@ const Navbar = () => {
   };
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "hyperspace",
+      network: "fantomTestnet",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,

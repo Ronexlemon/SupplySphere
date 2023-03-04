@@ -11,7 +11,7 @@ function TenderAllocation() {
   const [walletconnect, setWalletConnect] = useState(false);
   const [BidTenders, setBidTenders] = useState([]);
   const [index, setIndex] = useState();
-  const ContractBiderAddress = "0x21ba8e6B05c8020d985777Ab10457cE7C0626fa1";
+  const ContractBiderAddress = "0x1F949e4688F0933B699899a04ad4f9E76112b560";
   const Web3ModalRef = useRef();
   //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
@@ -20,7 +20,7 @@ function TenderAllocation() {
     // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
     
-    if (chainId !== 4002) {
+    if (Number(chainId) !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network to FantomTestnet ");
     }
@@ -66,7 +66,7 @@ function TenderAllocation() {
   // },[])
   useEffect(() => {
     Web3ModalRef.current = new Web3Modal({
-      network: "hyperspace",
+      network: "fantomTestnet",
       providerOptions: {},
       disableInjectedProvider: false,
       cacheProvider: false,
