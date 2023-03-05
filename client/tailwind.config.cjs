@@ -63,7 +63,7 @@ module.exports = {
         590: "590px",
       },
       backgroundImage: {
-        "bannerImg": "url('https://res.cloudinary.com/dqab6gg7d/image/upload/v1676625544/bg/Promotional_Banner_1_fitwnt.svg')",
+        "bannerImg": "url('https://res.cloudinary.com/dkt32bf5c/image/upload/v1678009602/fantom_ryu9us.svg')",
       },
     },
   },

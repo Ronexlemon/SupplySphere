@@ -12,7 +12,7 @@ const  HeroText = () => {
           </div>
         </div>
         <h3 className="text-base text-[#fafafab5] w-[95%] xsm:w-[75%] md:w-[60%] text-center">
-          TenderSpace is a blockchain based application that makes it easy to
+        SupplySpherer is a blockchain based application that makes it easy to
           advertise and apply for tenders with the highest level of
           transparency.
         </h3>

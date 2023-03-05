@@ -6,7 +6,7 @@ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { useStateContext } from "../contexts/ContextProvider";
 import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
-import {  ethers,Contract } from "ethers";
+import {  providers,Contract } from "ethers";
 import Web3 from "web3";
 
 
@@ -46,14 +46,14 @@ const Navbar = () => {
   //provide sugner or provider
   const connectWallet = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new ethers.BrowserProvider(provider);
+    const web3Provider = new providers.Web3Provider(provider);
     // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
-    // const signer = web3Provider.getSigner();
-    // const accounts = await signer.getAddress();
-    // setUserAccount(accounts);
-    console.log("chain o=id", Number(chainId) == 4002)
-    if (Number(chainId) !== 4002) {
+     const signer = web3Provider.getSigner();
+     const accounts = await signer.getAddress();
+    setUserAccount(accounts);
+   
+    if (chainId !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network to FantomTestnet ");
     }
