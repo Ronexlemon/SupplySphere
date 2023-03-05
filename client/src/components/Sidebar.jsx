@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../assets/images/TenderSpaceLogo.svg"
+import Logo from "../assets/images/fantomlanding.svg"
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 

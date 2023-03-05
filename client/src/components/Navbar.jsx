@@ -51,12 +51,14 @@ const Navbar = () => {
     const { chainId } = await web3Provider.getNetwork();
      const signer = web3Provider.getSigner();
      const accounts = await signer.getAddress();
-    setUserAccount(accounts);
+    //setUserAccount(accounts);
    
     if (chainId !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network to FantomTestnet ");
+     
     }
+    setWalletConnect(true)
     if (needSigner) {
       const signer = web3Provider.getSigner();
       return signer;

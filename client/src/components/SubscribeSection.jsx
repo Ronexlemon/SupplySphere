@@ -7,7 +7,7 @@ const SubscribeSection = () => {
               Interested in Tendering? Join with us now
             </h1>
             <h3 className="my-5">
-              TenderSpace is a blockchain based application that makes it easy to
+            SupplySphere is a blockchain based application that makes it easy to
               advertise and apply for tenders with the highest level of
               transparency.
             </h3>
