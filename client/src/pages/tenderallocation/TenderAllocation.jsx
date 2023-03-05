@@ -3,7 +3,7 @@ import { BiderAbi } from "../../abi/bidercontract_abi";
 import Web3Modal from "web3modal";
 import { useRef, useEffect, useState,useCallback } from "react";
 
-import { BrowserProvider, Contract } from "ethers";
+import { providers, Contract } from "ethers";
 import DisplayTenderAllocation from "./DisplayTenderAllocation";
 
 
@@ -16,11 +16,11 @@ function TenderAllocation() {
   //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new BrowserProvider(provider);
+    const web3Provider = new providers.Web3Provider(provider);
     // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
     
-    if (Number(chainId) !== 4002) {
+    if (chainId !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network to FantomTestnet ");
     }

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 import Web3Modal from "web3modal";
-import { BrowserProvider, Contract } from "ethers";
+import { providers, Contract } from "ethers";
 
 import { BiderAbi } from "../../abi/bidercontract_abi";
 
@@ -54,10 +54,10 @@ const Tenders = () => {
   const getProviderOrSigner = async (needSigner = false) => {
     //connect metamask
     const provider = await web3ModalRef.current.connect();
-    const web3Provider = new BrowserProvider(provider);
+    const web3Provider = new providers.Web3Provider(provider);
     //check if user is connected to Fantom network
     const { chainId } = await web3Provider.getNetwork();
-    if (Number(chainId) !== 4002) {
+    if (chainId !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network To FantomTestnet ");
     }
@@ -65,8 +65,8 @@ const Tenders = () => {
     //if need signer for transactions
     if (needSigner) {
       const signer = web3Provider.getSigner();
-    //   const accounts = await signer.getAddress();
-    //   setaddress(accounts);
+       const accounts = await signer.getAddress();
+      setaddress(accounts);
       return signer;
     }
     return web3Provider;

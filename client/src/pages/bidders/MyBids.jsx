@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Web3Modal from "web3modal";
-import { BrowserProvider, Contract } from "ethers";
+import { providers, Contract } from "ethers";
 import { BiderAbi } from "../../abi/bidercontract_abi";
 import DisplayBidsTenders from "./DisplayMyBids"
 
@@ -72,7 +72,7 @@ const MyBidsTenders = () => {
   const getProviderOrSigner = async (needSigner = false) => {
     //connect metamask
     const provider = await web3ModalRef.current.connect();
-    const web3Provider = new BrowserProvider(provider);
+    const web3Provider = new providers.Web3Provider(provider);
     const accounts = web3.currentProvider.selectedAddress;
    
     setUserAccount(accounts);
@@ -90,7 +90,7 @@ const MyBidsTenders = () => {
     if (needSigner) {
       const signer = web3Provider.getSigner();
       const accounts = await signer.getAddress();
-      // setaddress(accounts);
+       setaddress(accounts);
       return signer;
     }
     return web3Provider;

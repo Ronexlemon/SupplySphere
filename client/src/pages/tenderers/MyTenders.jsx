@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Web3Modal from "web3modal";
 
-import { BrowserProvider, Contract } from "ethers";
+import { providers, Contract } from "ethers";
 
 import Web3 from "web3";
 
@@ -80,21 +80,21 @@ const AllMyTenders = () => {
   //provide sgner or provider
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await Web3ModalRef.current.connect();
-    const web3Provider = new BrowserProvider(provider);
-    const web3 = new Web3(provider)
-    const accounts = web3.currentProvider.selectedAddress;
+    const web3Provider = new providers.Web3Provider(provider);
+    // const web3 = new Web3(provider)
+    // const accounts = web3.currentProvider.selectedAddress;
    
-    setUserAccount(accounts);
-    console.log("account",accounts)
+    // setUserAccount(accounts);
+  //  console.log("account",accounts)
     // check if network is fantomTestnet
     const { chainId } = await web3Provider.getNetwork();
      const signer = web3Provider.getSigner();
      
-    // console.log("the balance is",await balance)
-     console.log("the signer is",await signer)
-   // const accounts = await signer.Address();
-    // setUserAccount(balance);
-    if (Number(chainId) !== 4002) {
+   
+    
+    const accounts = await signer.getAddress();
+     setUserAccount(accounts);
+    if (chainId !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network to FantomTestnet ");
     }

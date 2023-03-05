@@ -6,7 +6,7 @@ const DisplayMyTenders = (props) => {
 
    useEffect(() => {
      const filteredTenders = props.tenders.filter(
-       (tender) => tender.owner.toString().toLowerCase() == props.userAccount.toString().toLowerCase()
+       (tender) => tender.owner.toString().toLowerCase() === props.userAccount.toString().toLowerCase()
        
      );
      setNotHaveTender(filteredTenders.length === 0);
@@ -36,7 +36,7 @@ const DisplayMyTenders = (props) => {
               {props.tenders.map((tender, index) => (
                 <>
                
-                  {tender.owner.toString().toLowerCase() == props.userAccount.toString().toLowerCase() && (
+                  {tender.owner.toString().toLowerCase() === props.userAccount.toString().toLowerCase() && (
                     <tr
                       key={index}
                       className="border-b border-gray-200  hover:bg-gray-100"
