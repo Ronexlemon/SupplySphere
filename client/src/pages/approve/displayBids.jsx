@@ -72,7 +72,7 @@ const DisplayBids = (props) => {
                         <div className="flex items-center">
                           <div className="mr-2"></div>
                           <span className="font-josefin font-normal">
-                            {tender.companyOfferTender}
+                            {tender.tenderOwnerName}
                           </span>
                         </div>
                       </td>

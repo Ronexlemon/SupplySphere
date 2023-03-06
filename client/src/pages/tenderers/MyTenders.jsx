@@ -94,6 +94,7 @@ const AllMyTenders = () => {
     
     const accounts = await signer.getAddress();
      setUserAccount(accounts);
+     console.log("chain idssss",chainId)
     if (chainId !== 4002) {
       window.alert("Change network to FantomTestnet");
       throw new Error("Change network to FantomTestnet ");
